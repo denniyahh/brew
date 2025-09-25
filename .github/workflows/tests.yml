@@ -37,7 +37,6 @@ jobs:
         with:
           core: false
           cask: false
-          test-bot: false
 
       - name: Cache Bundler RubyGems
         uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
@@ -89,7 +88,6 @@ jobs:
         with:
           core: true
           cask: true
-          test-bot: true
 
       - name: Cache Bundler RubyGems
         uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
@@ -138,7 +136,6 @@ jobs:
         with:
           core: true
           cask: false
-          test-bot: false
 
       - name: Run brew readall on homebrew/core
         run: brew readall --os=all --arch=all --aliases homebrew/core
@@ -161,7 +158,6 @@ jobs:
         with:
           core: true
           cask: true
-          test-bot: false
 
       - name: Run brew readall on all casks
         run: brew readall --os=all --arch=all homebrew/cask
@@ -184,7 +180,6 @@ jobs:
         with:
           core: false
           cask: false
-          test-bot: false
 
       - name: Configure Git user
         uses: Homebrew/actions/git-user-config@main
@@ -219,7 +214,6 @@ jobs:
         with:
           core: false
           cask: false
-          test-bot: false
 
       - name: Run brew update-tests
         run: |
@@ -257,7 +251,6 @@ jobs:
           # runners, and it's expensive to tap it.
           core: ${{ runner.os == 'macOS' }}
           cask: false
-          test-bot: false
 
       - name: Cache Bundler RubyGems
         uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
@@ -402,7 +395,8 @@ jobs:
         with:
           core: false
           cask: false
-          test-bot: true
+
+      - run: brew config
 
       - run: brew test-bot --only-cleanup-before
 
@@ -442,7 +436,8 @@ jobs:
         with:
           core: false
           cask: false
-          test-bot: false
+
+      - run: brew config
 
       - run: brew test-bot --only-cleanup-before
 
